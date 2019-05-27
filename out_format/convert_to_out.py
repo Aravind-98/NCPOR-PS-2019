@@ -3,10 +3,11 @@ from pprint import pprint
 import numpy as np
 import numpy.ma as ma
 import matplotlib.pyplot as plt
+import sys
 
-in_path = '../data/seaice_conc_monthly_sh_f08_198906_v03r01.nc'
-
-root_grp = Dataset('test_out.nc','w')
+in_path = sys.argv[1]
+out_path = sys.argv[2]
+root_grp = Dataset(out_path,'w')
 data = Dataset(in_path,'r+')
 
 root_grp.createDimension('time', None)
@@ -39,27 +40,11 @@ for i in range(-90,-50+1):
 #countj = 0
 a = []
 for i in np.arange(-90,-50.25,0.25):
-    print(i)
-    countj = 0
+    if i%10 == 0:
+        print(f'{out_path} | {i}')
     for j in np.arange(-180,180,0.25):
         ind = np.argmin(np.square(in_lat_fl-i)+np.square(in_lon_fl-j))
-        if ma.is_masked(in_gm_fl[ind]):
-            g_m_conc[0,i,j] = 0
-            #g_m_conc[0,i,j].mask = False
-        else:
-            g_m_conc[0,i,j] = in_gm_fl[ind]
-
-        if ma.is_masked(in_mo_fl[ind]):
-            m_o_day[0,i,j] = 0
-            #m_o_day[0,i,j].mask = False
-        else:
-            m_o_day[0,i,j] = in_mo_fl[ind]
+        g_m_conc[0,i,j] = in_gm_fl[ind]
+        m_o_day[0,i,j] = in_mo_fl[ind]
 
 root_grp.close
-
-print('plotting....')
-print(len(a),a[0])
-for  pt in a:
-    print(pt)
-    plt.scatter(pt[0],pt[1])
-plt.show()
