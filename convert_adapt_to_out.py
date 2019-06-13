@@ -38,12 +38,15 @@ with Dataset(out_path, 'w') as root_grp:
 	grid_lat, grid_lon = np.mgrid[-90:-50:161j, -180:180:1441j]
 	lat[:] = grid_lat
 	lon[:] = grid_lon
-	time[:] = data.variables["time"][:]
+	#time[:] = data.variables["time"][:]
 
 	for i in range(data.variables["time"].shape[0]):
-
+	#for i in range(10):
+		"""
 		with open('log_adapt','a') as f:
 			f.write(str(i)+'\n')
+		"""
+		print(i)
 
 		vals = data.variables["ssr"][i][:][:].flatten()
 		grid_lat, grid_lon = np.mgrid[-90:-50:161j, -180:180:1441j]
