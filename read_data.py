@@ -3,9 +3,11 @@ from pprint import pprint
 import numpy as np
 import numpy.ma as ma
 import matplotlib.pyplot as plt
-from mpl_toolkits.basemap import Basemap
+#from mpl_toolkits.basemap import Basemap
 import matplotlib.cm as cm
-path = './out_format/198903.nc'
+import sys
+
+path = sys.argv[1]
 data = Dataset(path,'r+')
 
 data.set_fill_on()
@@ -16,7 +18,7 @@ print('\n')
 
 lat = data.variables["lat"]
 lon = data.variables["lon"]
-sic = data.variables["goddard_merged_seaice_conc_monthly"]
+sic = data.variables["sst"]
 print(sic)
 
 colors = { (0,0.25):'green', (0.25,0.5): 'yellow', (0.5,0.75): 'orange', (0.75,1): 'red' }
