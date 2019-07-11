@@ -1,0 +1,24 @@
+#
+# Amundsen Sea Low (ASL) Index version 2
+# (based on ERA-Interim Reanalysis data)
+#
+# Dr J. Scott Hosking
+# British Antarctic Survey
+#
+# For more inforation see:
+# Hosking et al., 2016: Future circulation changes off West Antarctica: Sensitivity of the Amundsen Sea
+# Low to projected anthropogenic forcing, Geophysical Research Letters, 43, doi:10.1002/2015GL067143
+#
+# Updated dataset can be found at: http://www.antarctica.ac.uk/data/absl/
+#
+# Note that for DJF, the year relates to the December
+#
+# Key:
+#    SectorPres = Area-average sea level pressure over sector (170-298 E : 60-80 S)
+#    ActCenPres = Actual central pressure of ASL
+#    lon        = Longitudinal location of ASL (degrees East)
+#    lat        = Latitudinal location of ASL
+#
+# The ASL Relative central pressure can be calculated as follows:
+#      RelCenPres[i] = ActCenPres[i] - SectorPres[i]
+
